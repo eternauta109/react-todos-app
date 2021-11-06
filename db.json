@@ -1,0 +1,56 @@
+{
+  "todos": [
+    {
+      "name": "demo",
+      "dueDate": "27/10/2021",
+      "user_id": 1,
+      "id": 6,
+      "completed": true
+    },
+    {
+      "name": "true",
+      "dueDate": "27/10/2021",
+      "user_id": 1,
+      "completed": false,
+      "id": 9
+    },
+    {
+      "name": "lomba",
+      "dueDate": "30/10/2021",
+      "user_id": 1,
+      "completed": true,
+      "id": 11
+    },
+    {
+      "name": "pollo",
+      "dueDate": "30/10/2021",
+      "user_id": 1,
+      "completed": false,
+      "id": 13
+    },
+    {
+      "name": "cribbio",
+      "dueDate": "3/11/2021",
+      "user_id": 1,
+      "completed": false,
+      "id": 14
+    },
+    {
+      "name": "lokkky",
+      "dueDate": "3/11/2021",
+      "user_id": 1,
+      "completed": false,
+      "id": 15
+    },
+    {
+      "name": "polttrone",
+      "dueDate": "3/11/2021",
+      "user_id": 1,
+      "completed": false,
+      "id": 16
+    }
+  ],
+  "filter": [
+    "ALL"
+  ]
+}

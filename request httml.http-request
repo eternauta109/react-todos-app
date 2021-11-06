@@ -1,0 +1,13 @@
+{
+  "body": {
+    "content": "ewogICJuYW1lIjogIm5ldyByZXNvdXJjZSIsCiAgImNvbXBsZXRlZCI6IGZhbHNlLAogICJkdWVEYXRlIjogIjI5LzkvMjAyMSIsCiAgInVzZXJfaWQiOiAxLAogIH0=",
+    "file": false,
+    "fileSize": false
+  },
+  "headers": {
+    "content-type": "json"
+  },
+  "method": "POST",
+  "title": "New HTTP Request",
+  "url": "http://localhost:3004/todos"
+}

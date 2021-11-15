@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import todoReducer from "../features/todos/todosSlice";
 import filterReducer from "../features/todos/filterSlice";
+import listReducer from "../features/list/listsSlice"
 
 /* console.log('store todoreducer', todoReducer) */
 
@@ -37,6 +38,7 @@ export const store = configureStore({
   reducer: {
     filter: filterReducer,
     todos: todoReducer,
+    lists:listReducer
   },
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat(myLog),
 });

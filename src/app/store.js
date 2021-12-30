@@ -1,10 +1,32 @@
 import { configureStore } from "@reduxjs/toolkit";
 import todoReducer from "../features/todos/todosSlice";
 import filterReducer from "../features/todos/filterSlice";
-import listReducer from "../features/list/listsSlice"
+/* import listReducer from "../features/list/listsSlice" */
+import {listsApi} from '../service/listServiceRTK'
+import { setupListeners } from "@reduxjs/toolkit/dist/query";
+/* import logger from 'react-logger' */
+//middleware con arrow function
+const myLog = store => nextMioMiddleware=> action=> {
+      //store.dispatch({ type: "INIT_MYLOG", payload: null });
+      /* console.log("middleware action", action.type);
+      console.log('rev', store.getState())
+      console.log("middleware action", action.payload); */
+      const res =  nextMioMiddleware(action);
+      /* console.log('result middleware',res) */
+      return res
+    };
 
+export const store = configureStore({
+  reducer: {
+    filter: filterReducer,
+    todos: todoReducer,
+    [listsApi.reducerPath]: listsApi.reducer,
+  },
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(myLog, listsApi.middleware),
+});
+
+setupListeners(store.dispatch)
 /* console.log('store todoreducer', todoReducer) */
-
 
 //middleware con funzioni
 /* const myLog = (store) => {
@@ -19,26 +41,3 @@ import listReducer from "../features/list/listsSlice"
     };
   };
 }; */
-
-//middleware con arrow function
-const myLog = store => nextMioMiddleware=> action=> {
-      //store.dispatch({ type: "INIT_MYLOG", payload: null });
-      /* console.log("middleware action", action.type);
-      console.log('rev', store.getState())
-      console.log("middleware action", action.payload); */
-      const res =  nextMioMiddleware(action);
-      /* console.log('result middleware',res) */
-      return res
-    };
-
-
-
-
-export const store = configureStore({
-  reducer: {
-    filter: filterReducer,
-    todos: todoReducer,
-    lists:listReducer
-  },
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(myLog),
-});

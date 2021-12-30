@@ -1,12 +1,13 @@
-import React, { useRef, useEffect } from "react";
-import {  getTodos } from "./features/todos/todosSlice";
-import {  getLists } from "./features/list/listsSlice";
+import React, { useEffect } from "react";
+import { getTodos } from "./features/todos/todosSlice";
+
+//questa era l'importazione dello store listscon thunk
+/* import { getLists } from "./features/list/listsSlice"; */
 /* import { connect } from "react-redux"; */
 import { useSelector, useDispatch } from "react-redux";
 import Mytodos from "./features/todos/MyTodos";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Mylists from "./features/list/Mylist";
@@ -14,26 +15,11 @@ import { Header } from "./components/Header";
 
 /* import { addTodo } from './actions/index'; */
 
-
 function App() {
   const dispatch = useDispatch();
-
-  useEffect(() => {
+  
+  useEffect(() => {   
     dispatch(getTodos())
-      .unwrap()
-      .then((res) => {})
-      .catch((error) => {
-        toast.error(error.message, {
-          position: "bottom-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      });
-      dispatch(getLists())
       .unwrap()
       .then((res) => {})
       .catch((error) => {
@@ -67,43 +53,19 @@ function App() {
     return !todo.completed;
   });
 
-  let lists = useSelector((state) => state.lists);
-  
-  /* let lists=[
-    {
-      "name":"market",
-      "created_at":"2021-11-13 12:12",
-      "user_id":1,
-      "id":1
-    },
-    {
-      "name":"school",
-      "created_at":"2021-11-13 12:12",
-      "user_id":1,
-      "id":2
-    }
-  ] */
-
   console.log("useselctor state.todos", todos);
-  console.log("useselctor state.list", lists);
-
-  
 
   return (
     <div className="App container-fluid">
       <Router>
         <div className="row d-flex justify-content-center">
-          <Header/>
+          <Header />
           <Switch>
             <Route path="/todos">
-              <Mytodos
-                todos={todos}
-                      
-                activeFilter={activeFilter}            
-              ></Mytodos>
+              <Mytodos todos={todos} activeFilter={activeFilter}></Mytodos>
             </Route>
             <Route exact path="(/|/lists)">
-             <Mylists lists={lists}/>             
+              <Mylists />
             </Route>
           </Switch>
         </div>

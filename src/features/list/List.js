@@ -1,22 +1,23 @@
-import React from "react";
+/* import React, { Fragment } from "react"; */
 import PropTypes from "prop-types";
-import { removeList } from "./listsSlice";
-import { useDispatch } from "react-redux";
+//non uso piu le slice ma gli rtk
+/* import { removeList } from "./listsSlice";
+import { useDispatch } from "react-redux"; */
+import React from "react";
 
-export const List = ({ list }) => {
-  const dispatch = useDispatch();
-  const onRemove = (list) => {
-    dispatch(removeList(list));
-  };
+
+export const List = ({ list,onRemoveList }) => {
+  
 
   return (
+    
     <li className="list-group-item d-flex justify-content-between">
       <span>
         <span> {list.name}</span>
       </span>
       <button
         onClick={() => {
-          onRemove(list);
+          onRemoveList(list.id)
         }}
         type="button"
         className="btn btn-danger btn-sm"
@@ -24,6 +25,7 @@ export const List = ({ list }) => {
         <i className="bi bi-trash"></i>
       </button>
     </li>
+    
   );
 };
 

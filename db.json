@@ -39,14 +39,14 @@
       "name": "polttrone",
       "dueDate": "3/11/2021",
       "user_id": 1,
-      "completed": false,
+      "completed": true,
       "id": 16
     },
     {
       "name": "lombda",
       "dueDate": "15/11/2021",
       "user_id": 1,
-      "completed": false,
+      "completed": true,
       "id": 17
     },
     {
@@ -73,12 +73,6 @@
       "created_at": "2021-11-13 12:12",
       "user_id": 1,
       "id": 1
-    },
-    {
-      "name": "school",
-      "created_at": "2021-11-13 12:12",
-      "user_id": 1,
-      "id": 2
     }
   ]
 }

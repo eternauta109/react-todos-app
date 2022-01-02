@@ -5,20 +5,27 @@ import { getTodos } from "./features/todos/todosSlice";
 /* import { getLists } from "./features/list/listsSlice"; */
 /* import { connect } from "react-redux"; */
 import { useSelector, useDispatch } from "react-redux";
+
+
 import Mytodos from "./features/todos/MyTodos";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Mylists from "./features/list/Mylist";
+
 import { Header } from "./components/Header";
 
 /* import { addTodo } from './actions/index'; */
 
 function App() {
   const dispatch = useDispatch();
-  
-  useEffect(() => {   
+
+
+
+  useEffect(() => {      
+
+    //importo i todos con i thunk
     dispatch(getTodos())
       .unwrap()
       .then((res) => {})

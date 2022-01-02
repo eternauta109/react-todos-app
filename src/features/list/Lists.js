@@ -7,15 +7,19 @@ import {
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 
+
 export const Lists = () => {
+  //hook per la query get sulle liste
   const {
     data: lists = [],
     error,
     isLoading,
     isFetching,
-    refetch: reloadLists,
+    refetch: reloadLists,//metodo per rieseguire nuovamente la query come richiamare il getlist
   } = useGetListsQuery();
 
+  console.log("hook rtk query liste", lists, error, isLoading);
+  //hook per la mutation sulle liste
   const [
     removeList,
     { isLoading: isDeleting, isSuccess, error: deleteError, isError },
@@ -39,14 +43,18 @@ export const Lists = () => {
   return (
     <ul className="list-group list-group-flush">
       {lists.map((list, key) => (
-        <List onRemoveList={
-          id=>{
-            removeList(id).unwrap()
-            .then(()=>{reloadLists();}).catch(err=>toast.error(err.message))
-          }
-          }
+        <List
+          onRemoveList={(id) => {
+            removeList(id)
+              .unwrap()
+              .then(() => {
+               // reloadLists();
+              })
+              .catch((err) => toast.error(err.message));
+          }}
           list={list}
-          key={list.id} />
+          key={list.id}
+        />
       ))}
     </ul>
   );

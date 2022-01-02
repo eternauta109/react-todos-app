@@ -1,32 +1,45 @@
 import React from "react";
 import Lists from "./Lists";
-import PushList from "./PushList";
 
 import { useRef } from "react";
-import { useDispatch } from "react-redux";
-import { addList } from "./thunksLists";
+import AddList from "../../components/addElement";
+import { useAddListMutation } from "../../service/listServiceRTK";
+import { newList } from "./../../service/listsServiceThunk";
+//la LOGICA DELLE LISTE E' TUTTA CON RTK QUERY
 
 const Mylists = ({ lists }) => {
   const newList = useRef("");
-  const dispatch = useDispatch();
+  //Add a list con rtk query
+  const [
+    addList,
+    {
+      isLoading: isAdding,
+      isSuccess: isAddSucces,
+      error: addError,
+      isError: isAddError,
+    },
+  ] = useAddListMutation();
 
   const manageClick = (e) => {
     e.preventDefault();
-    dispatch(
-      addList({
-        name: newList.current.value,
-        created_at:new Date().toLocaleDateString(),       
-        user_id: 1,
-      })
-    );
-    newList.current.value = "";
+    addList({
+      name: newList.current.value,
+      date: new Date().toLocaleDateString(),
+      user_id: "1",
+    });
+    
   };
+
+  if(isAddSucces){
+    newList.current.value = "";
+    
+  }
 
   return (
     <div className="col-md-6">
       <h1>My list</h1>
-
-      <PushList newList={newList} manageClick={manageClick} />
+      <AddList ele={newList} manageClick={manageClick} txtButton={"Add a List"} />
+      {/* <PushList newList={newList} /> */}
       <Lists lists={lists} />
     </div>
   );

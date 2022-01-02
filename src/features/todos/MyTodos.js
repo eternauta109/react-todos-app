@@ -1,5 +1,6 @@
 import TodoList from "./TodoList";
-import PushTodo from "./addTodo";
+/* import PushTodo from "./addTodo"; */
+import AddElement from '../../components/addElement'
 import FilterTodo from "./filterTodo";
 import React from "react";
 import ErrorBoundary from "../../components/ErrorBoundary";
@@ -33,7 +34,7 @@ const Mytodos = ({activeFilter,  todos}) => {
     <React.Fragment>
       <h1>MY todo List</h1>
       <div className="col-md-6">
-        <PushTodo todoEl={todoEl} manageClick={manageClick} />
+        <AddElement ele={todoEl} manageClick={manageClick} txtButton={"Add a Todo"} />
         <ErrorBoundary>
           <TodoList todos={todos} />
         </ErrorBoundary>

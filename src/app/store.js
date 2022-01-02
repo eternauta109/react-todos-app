@@ -4,17 +4,19 @@ import filterReducer from "../features/todos/filterSlice";
 /* import listReducer from "../features/list/listsSlice" */
 import {listsApi} from '../service/listServiceRTK'
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
-/* import logger from 'react-logger' */
+import logger from 'redux-logger'
+
+
 //middleware con arrow function
-const myLog = store => nextMioMiddleware=> action=> {
+/* const myLog = store => nextMioMiddleware=> action=> {
       //store.dispatch({ type: "INIT_MYLOG", payload: null });
       /* console.log("middleware action", action.type);
       console.log('rev', store.getState())
       console.log("middleware action", action.payload); */
-      const res =  nextMioMiddleware(action);
-      /* console.log('result middleware',res) */
+      /* const res =  nextMioMiddleware(action);
+      console.log('result middleware',res)
       return res
-    };
+    }; */
 
 export const store = configureStore({
   reducer: {
@@ -22,7 +24,7 @@ export const store = configureStore({
     todos: todoReducer,
     [listsApi.reducerPath]: listsApi.reducer,
   },
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(myLog, listsApi.middleware),
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger, listsApi.middleware),
 });
 
 setupListeners(store.dispatch)

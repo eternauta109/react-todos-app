@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getLists as gt, removeList as rl,newList } from "../../service/listsServiceThunk";
+import { getLists as gt, removeList as rl,newList } from "./listsServiceThunk";
 
 export const getLists = createAsyncThunk(
   "lists/getLists",

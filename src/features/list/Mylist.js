@@ -1,10 +1,9 @@
 import React from "react";
 import Lists from "./Lists";
-
 import { useRef } from "react";
 import AddList from "../../components/addElement";
 import { useAddListMutation } from "../../service/listServiceRTK";
-import { newList } from "./../../service/listsServiceThunk";
+
 //la LOGICA DELLE LISTE E' TUTTA CON RTK QUERY
 
 const Mylists = ({ lists }) => {
@@ -13,10 +12,10 @@ const Mylists = ({ lists }) => {
   const [
     addList,
     {
-      isLoading: isAdding,
+      /* isLoading: isAdding, */
       isSuccess: isAddSucces,
-      error: addError,
-      isError: isAddError,
+     /*  error: addError,
+      isError: isAddError, */
     },
   ] = useAddListMutation();
 

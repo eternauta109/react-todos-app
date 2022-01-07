@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import todoReducer from "../features/todos/todosSlice";
+/* import todoReducer from "../features/todos/todosSlice"; import per usare i thunk */
 import filterReducer from "../features/todos/filterSlice";
 /* import listReducer from "../features/list/listsSlice" */
-import {listsApi} from '../service/listServiceRTK'
+import { listsApi } from "../service/listServiceRTK";
+import { todosApi } from "../service/todoServiceRTK";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
-import logger from 'redux-logger'
-
+import logger from "redux-logger";
 
 //middleware con arrow function
 /* const myLog = store => nextMioMiddleware=> action=> {
@@ -13,7 +13,7 @@ import logger from 'redux-logger'
       /* console.log("middleware action", action.type);
       console.log('rev', store.getState())
       console.log("middleware action", action.payload); */
-      /* const res =  nextMioMiddleware(action);
+/* const res =  nextMioMiddleware(action);
       console.log('result middleware',res)
       return res
     }; */
@@ -21,13 +21,22 @@ import logger from 'redux-logger'
 export const store = configureStore({
   reducer: {
     filter: filterReducer,
-    todos: todoReducer,
+    //questa era lafetta di store todos che creavo con i thunk
+    /* todos: todoReducer, */
+    //ora uso la fetta creata con createapi
+
+    [todosApi.reducerPath]: todosApi.reducer,
     [listsApi.reducerPath]: listsApi.reducer,
   },
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger, listsApi.middleware),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(
+      logger,
+      listsApi.middleware,
+      todosApi.middleware
+    ),
 });
 
-setupListeners(store.dispatch)
+setupListeners(store.dispatch);
 /* console.log('store todoreducer', todoReducer) */
 
 //middleware con funzioni

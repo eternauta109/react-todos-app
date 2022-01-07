@@ -1,16 +1,14 @@
 import React, { useEffect } from "react";
-import { getTodos } from "./features/todos/todosSlice";
-
+/* import { getTodos } from "./features/todos/todosSlice"; */
 //questa era l'importazione dello store listscon thunk
 /* import { getLists } from "./features/list/listsSlice"; */
 /* import { connect } from "react-redux"; */
-import { useSelector, useDispatch } from "react-redux";
-
+/* import { useSelector, useDispatch } from "react-redux"; */
 
 import Mytodos from "./features/todos/MyTodos";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Mylists from "./features/list/Mylist";
 
@@ -19,14 +17,10 @@ import { Header } from "./components/Header";
 /* import { addTodo } from './actions/index'; */
 
 function App() {
-  const dispatch = useDispatch();
-
-
-
+  /* const dispatch = useDispatch(); */
   useEffect(() => {      
-
     //importo i todos con i thunk
-    dispatch(getTodos())
+/*     dispatch(getTodos())
       .unwrap()
       .then((res) => {})
       .catch((error) => {
@@ -39,28 +33,13 @@ function App() {
           draggable: true,
           progress: undefined,
         });
-      });
-
+      }); */
     return () => {
       /* cleanup */
     };
-  }, [dispatch]);
-
-  let todos = useSelector((state) => state.todos);
-  const activeFilter = useSelector((state) => state.filter);
-
-  //filtro i todo in base allo stato filter dello store
-  todos = todos.filter((todo) => {
-    if (activeFilter === "ALL") {
-      return true;
-    }
-    if (activeFilter === "COMPLETED") {
-      return todo.completed;
-    }
-    return !todo.completed;
-  });
-
-  console.log("useselctor state.todos", todos);
+  }, []);
+/*   let todos = useSelector((state) => state.todos); */
+/*   console.log("useselctor state.todos", todos); */
 
   return (
     <div className="App container-fluid">
@@ -69,7 +48,7 @@ function App() {
           <Header />
           <Switch>
             <Route path="/todos">
-              <Mytodos todos={todos} activeFilter={activeFilter}></Mytodos>
+              <Mytodos />
             </Route>
             <Route exact path="(/|/lists)">
               <Mylists />

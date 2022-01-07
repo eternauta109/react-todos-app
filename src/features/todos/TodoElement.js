@@ -1,25 +1,46 @@
 /* eslint-disable react/react-in-jsx-scope */
 /* import { connect } from 'react-redux' */
 import React from "react";
-import { useDispatch } from "react-redux";
-import { removeTodo, toggleTodo } from "./todosSlice";
+/* import { useDispatch } from "react-redux";
+import { removeTodo, toggleTodo } from "./todosSlice"; */
 import PropTypes from "prop-types";
+import {
+  useUpdateTodoMutation,
+  useDeleteTodosMutation,
+} from "../../service/todoServiceRTK";
 
 function TodoElement({ todo }) {
-  /*  console.log("element", todo); */
-  const dispatch = useDispatch();
-  const onRemove = (todo) => {
-    dispatch(removeTodo(todo));
+  /*  console.log("element", todo);
+  const dispatch = useDispatch(); */
+  const [
+    removeTodo,
+    { isLoading: isDeleting, isSuccess, error: deleteError, isError },
+  ] = useDeleteTodosMutation();
+
+  const [
+    updateTodo,
+    {
+      isLoading: isUpdating,
+      isSuccess: isUpdateSucces,
+      error: upDateError,
+      isError: isUpdateError,
+    },
+  ] = useUpdateTodoMutation();
+
+  const onRemove = async (todo) => {
+    await removeTodo(todo.id);
   };
 
   const onToggle = async (todo) => {
+    console.log("todo to toggle", todo);
     const newTodo = { ...todo, completed: !todo.completed };
-    try {
-      const res = await dispatch(toggleTodo(newTodo)).unwrap();
+    await updateTodo({id:todo.id, completed: !todo.completed });
+    /*  try {
+      const res = await updateTodo(todo.id,newTodo).unwrap();
       console.log("RES erro try", res);
     } catch (error) {
       console.log("ERROR", error);
-    }
+    } */
   };
 
   const completed = todo.completed ? (

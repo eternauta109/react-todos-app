@@ -11,8 +11,9 @@ export const listsApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: LISTS_URL }),
   //imposto gli endpoints
   endpoints: (builder) => ({
+    
     getLists: builder.query({
-      query: () => ``,
+      query: () => "",
       providesTags: (res,err)=> {
         if (err|| !res){
           return [{type:'LIST'}];
@@ -23,6 +24,7 @@ export const listsApi = createApi({
       // (res,err)=> res.map((e)=>{type:'LIST', id:e.id}) cosi ritorna un array di tutti
       //gli oggetti che possono invalidare l'api????
     }),
+
     deleteList: builder.mutation({
       query: (id) => ({
         url: "/" + id,
@@ -31,6 +33,7 @@ export const listsApi = createApi({
       invalidatesTags: ["LIST"], //invalida la lista , e quindi la ricaricarica,
       //indipendentemente dall'id che stiamo eliminando
     }),
+
     addList: builder.mutation({
       query: (list) => ({
         url: "",
@@ -40,6 +43,7 @@ export const listsApi = createApi({
       invalidatesTags: ["LIST"], //invalida la lista , e quindi la ricaricarica,
       //indipendentemente dall'id che stiamo eliminando
     }),
+
     updateList: builder.mutation({
       query: ({id,...body}) => ({
         url: "/" + id,

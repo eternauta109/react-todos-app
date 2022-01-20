@@ -1,12 +1,12 @@
 import React from "react";
 import Lists from "./Lists";
-import { useRef } from "react";
+import { useRef,useEffect } from "react";
 import AddList from "../../components/addElement";
-import { useAddListMutation } from "../../service/listServiceRTK";
-
+import { useAddListMutation,useGetListsQuery } from "../../service/listServiceRTK";
+import { toast } from "react-toastify";
 //la LOGICA DELLE LISTE E' TUTTA CON RTK QUERY
 
-const Mylists = ({ lists }) => {
+const Mylists = () => {
   const newList = useRef("");
   //Add a list con rtk query
   const [
@@ -19,9 +19,19 @@ const Mylists = ({ lists }) => {
     },
   ] = useAddListMutation();
 
-  const manageClick = (e) => {
+  const {
+    data: lists = [{}],
+    error,
+    isLoading,
+    isFetching,
+    refetch: reloadLists,//metodo per rieseguire nuovamente la query come richiamare il getlist
+  } = useGetListsQuery();
+
+  console.log("hook rtk query liste", lists, error, isLoading);
+
+  const manageClick = async (e) => {
     e.preventDefault();
-    addList({
+    await addList({
       name: newList.current.value,
       date: new Date().toLocaleDateString(),
       user_id: "1",
@@ -31,8 +41,26 @@ const Mylists = ({ lists }) => {
 
   if(isAddSucces){
     newList.current.value = "";
-    
+  
   }
+ 
+
+  useEffect(() => {
+   
+   
+    if (error) {
+      toast.error(error);
+    }
+    if (isFetching || isLoading) {
+      toast.info("Loading List");
+    }
+    if (!isFetching) {
+      toast.dismiss();
+    }
+    return () => {
+      /* cleanup */
+    };
+  }, [error, isFetching]);
 
   return (
     <div className="col-md-6">

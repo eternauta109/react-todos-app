@@ -1,64 +1,14 @@
 {
-  "todos": [
-    {
-      "name": "trauma",
-      "create_at": "7/1/2022",
-      "user_id": 1,
-      "id": 1
-    },
-    {
-      "name": "risparmio",
-      "create_at": "7/1/2022",
-      "user_id": 1,
-      "id": 2
-    },
-    {
-      "name": "risparmiocreato",
-      "create_at": "7/1/2022",
-      "user_id": 1,
-      "id": 3,
-      "completed": true
-    }
-  ],
+  "todos": [],
   "filter": [
     "ALL"
   ],
   "lists": [
     {
-      "name": "market",
-      "created_at": "2021-11-13 12:12",
-      "user_id": 1,
+      "name": "sadsad",
+      "date": "20/1/2022",
+      "user_id": "1",
       "id": 1
-    },
-    {
-      "name": "school",
-      "date": "31/12/2021",
-      "user_id": "1",
-      "id": 2
-    },
-    {
-      "name": "sunday",
-      "date": "31/12/2021",
-      "user_id": "1",
-      "id": 4
-    },
-    {
-      "name": "frifa",
-      "date": "2/1/2022",
-      "user_id": "1",
-      "id": 5
-    },
-    {
-      "name": "edasdsd",
-      "date": "2/1/2022",
-      "user_id": "1",
-      "id": 6
-    },
-    {
-      "name": "qwerty",
-      "date": "4/1/2022",
-      "user_id": "1",
-      "id": 7
     }
   ]
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link,NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export const Header = () => {
   return (
@@ -22,25 +22,74 @@ export const Header = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <NavLink activeClassName='selected' className="nav-link active" to="/">
-                Home
+              <NavLink
+                activeClassName="selected"
+                className="nav-link active"
+                to="/"
+              >
+                <span
+                  data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show"
+                >
+                  Home
+                </span>
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink activeClassName='selected' className="nav-link" to="/lists">
-                List
+              <NavLink
+                activeClassName="selected"
+                className="nav-link"
+                to="/lists"
+              >
+                <span
+                  data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show"
+                >
+                  List
+                </span>
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink activeClassName='selected' className="nav-link" to="/todos">
-                Todos
+              <NavLink
+                activeClassName="selected"
+                className="nav-link"
+                to="/todos"
+              >
+                <span
+                  data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show"
+                >
+                  Todos
+                </span>
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink activeClassName='selected' className="nav-link" to="/login">Login</NavLink>
+              <NavLink
+                activeClassName="selected"
+                className="nav-link"
+                to="/login"
+              >
+                <span
+                  data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show"
+                >
+                  Login
+                </span>{" "}
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink activeClassName='selected' className="nav-link" to="/register">Register</NavLink>
+              <NavLink
+                activeClassName="selected"
+                className="nav-link"
+                to="/register"
+              >
+                <span
+                  data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show"
+                >
+                  Register
+                </span>
+              </NavLink>
             </li>
           </ul>
         </div>
@@ -48,6 +97,5 @@ export const Header = () => {
     </nav>
   );
 };
-
 
 export default Header;

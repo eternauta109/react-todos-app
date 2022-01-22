@@ -58,4 +58,4 @@ export const listsApi = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useAddListMutation,useUpdateListMutation ,useGetListsQuery, useDeleteListMutation } = listsApi;
+export const { useAddListMutation, useUpdateListMutation, useGetListsQuery, useDeleteListMutation } = listsApi;

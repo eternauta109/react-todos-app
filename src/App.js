@@ -11,7 +11,7 @@ import "./App.css";
 import { ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Mylists from "./features/list/Mylist";
-
+import ListEdit from "./features/list/ListEdit";
 import { Header } from "./components/Header";
 
 /* import { addTodo } from './actions/index'; */
@@ -52,6 +52,9 @@ function App() {
             </Route>
             <Route path="/lists/:list_id/todos">
               <Mytodos />
+            </Route>
+            <Route path="/lists/edit/:list_id">
+              <ListEdit />
             </Route>
             <Route exact path="(/|/lists)">
               <Mylists />

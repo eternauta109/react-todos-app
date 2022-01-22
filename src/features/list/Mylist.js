@@ -20,7 +20,7 @@ const Mylists = () => {
   ] = useAddListMutation();
 
   const {
-    data: lists = [{}],
+    data: lists = [],
     error,
     isLoading,
     isFetching,
@@ -46,8 +46,6 @@ const Mylists = () => {
  
 
   useEffect(() => {
-   
-   
     if (error) {
       toast.error(error);
     }
@@ -56,6 +54,7 @@ const Mylists = () => {
     }
     if (!isFetching) {
       toast.dismiss();
+      
     }
     return () => {
       /* cleanup */

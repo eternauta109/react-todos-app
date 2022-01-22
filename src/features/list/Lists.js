@@ -4,7 +4,7 @@ import {
 
   useDeleteListMutation,
 } from "../../service/listServiceRTK";
-import { useEffect } from "react";
+
 import { toast } from "react-toastify";
 
 

@@ -8,9 +8,10 @@ import { NavLink } from "react-router-dom";
 
 export const List = ({ list, onRemoveList }) => {
   return (
-    <li className="list-group-item">
-      <div className="row">
-        <div className="col-md-6 text-start">
+    <li className="list-group-item d-flex">
+     
+
+        <div className="col-md-8 text-start">
           <span>
             <NavLink
               to={
@@ -26,25 +27,30 @@ export const List = ({ list, onRemoveList }) => {
           </span>
         </div>
 
-        <div className="col-md-6">
-        <button
-           
-            type="button"
-            className="me-4 btn btn-succes btn-sm"
-          >
-            <i className="bi bi-pencil-fill"></i>
-          </button>
-          <button
-            onClick={() => {
-              onRemoveList(list.id);
-            }}
-            type="button"
-            className="me-4 btn btn-danger btn-sm"
-          >
-            <i className="bi bi-trash"></i>
-          </button>
+        <div className="col-md-4 text-end">
+          
+            <NavLink
+              to={{
+                pathname: "/lists/edit/" + list.id,
+                state: { data: list.name },
+              }}
+              type="button"
+              className="me-4 btn btn-succes btn-sm"
+            >
+              <i className="bi bi-pencil-fill"></i>
+            </NavLink>
+            <button
+              onClick={() => {
+                onRemoveList(list.id);
+              }}
+              type="button"
+              className="me-4 btn btn-danger btn-sm"
+            >
+              <i className="bi bi-trash"></i>
+            </button>
+          
         </div>
-      </div>
+     
     </li>
   );
 };

@@ -1,9 +1,13 @@
 import React from "react";
 import Lists from "./Lists";
-import { useRef,useEffect } from "react";
+import { useRef, useEffect } from "react";
 import AddList from "../../components/addElement";
-import { useAddListMutation,useGetListsQuery } from "../../service/listServiceRTK";
+import {
+  useAddListMutation,
+  useGetListsQuery,
+} from "../../service/listServiceRTK";
 import { toast } from "react-toastify";
+import FieldError from "../../components/FieldError";
 //la LOGICA DELLE LISTE E' TUTTA CON RTK QUERY
 
 const Mylists = () => {
@@ -14,17 +18,17 @@ const Mylists = () => {
     {
       /* isLoading: isAdding, */
       isSuccess: isAddSucces,
-     /*  error: addError,
+      /*  error: addError,
       isError: isAddError, */
     },
   ] = useAddListMutation();
 
   const {
-    data: lists = [],
+    data: { data: lists = [] } = {},
     error,
     isLoading,
     isFetching,
-    refetch: reloadLists,//metodo per rieseguire nuovamente la query come richiamare il getlist
+    // refetch: reloadLists, //metodo per rieseguire nuovamente la query come richiamare il getlist
   } = useGetListsQuery();
 
   console.log("hook rtk query liste", lists, error, isLoading);
@@ -36,25 +40,25 @@ const Mylists = () => {
       date: new Date().toLocaleDateString(),
       user_id: "1",
     });
-    
   };
 
-  if(isAddSucces){
+  if (isAddSucces) {
     newList.current.value = "";
-  
   }
- 
 
   useEffect(() => {
     if (error) {
-      toast.error(error);
+      if (typeof error === "string") {
+        toast.error(error);
+      } else {
+        toast.error(error.data.message);
+      }
     }
     if (isFetching || isLoading) {
       toast.info("Loading List");
     }
     if (!isFetching) {
       toast.dismiss();
-      
     }
     return () => {
       /* cleanup */
@@ -64,7 +68,12 @@ const Mylists = () => {
   return (
     <div className="col-md-6">
       <h1>My list</h1>
-      <AddList ele={newList} manageClick={manageClick} txtButton={"Add a List"} />
+      <FieldError errors={[error ? error.data.message : ""]} />
+      <AddList
+        ele={newList}
+        manageClick={manageClick}
+        txtButton={"Add a List"}
+      />
       {/* <PushList newList={newList} /> */}
       <Lists lists={lists} />
     </div>

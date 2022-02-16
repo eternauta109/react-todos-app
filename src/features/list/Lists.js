@@ -1,23 +1,15 @@
 import List from "./List";
 import React from "react";
-import {
-
-  useDeleteListMutation,
-} from "../../service/listServiceRTK";
+import { useDeleteListMutation } from "../../service/listServiceRTK";
 
 import { toast } from "react-toastify";
 
-
-export const Lists = ({lists}) => {
+export const Lists = ({ lists }) => {
   //hook per la query get sulle liste
- 
-  //hook per la mutation sulle liste
-  const [
-    removeList,
-    { isLoading: isDeleting, isSuccess, error: deleteError, isError },
-  ] = useDeleteListMutation();
 
-  
+  //hook per la mutation sulle liste
+  const [removeList] = useDeleteListMutation();
+
   console.log("lisits", lists);
   return (
     <ul className="list-group list-group-flush">
@@ -27,7 +19,7 @@ export const Lists = ({lists}) => {
             removeList(id)
               .unwrap()
               .then(() => {
-               // reloadLists();
+                // reloadLists();
               })
               .catch((err) => toast.error(err.message));
           }}

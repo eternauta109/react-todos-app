@@ -14,17 +14,17 @@ function TodoElement({ todo }) {
   const dispatch = useDispatch(); */
   const [
     removeTodo,
-    { isLoading: isDeleting, isSuccess, error: deleteError, isError },
+    //{ isLoading: isDeleting, isSuccess, error: deleteError, isError },
   ] = useDeleteTodosMutation();
 
   const [
     updateTodo,
-    {
+    /*  {
       isLoading: isUpdating,
       isSuccess: isUpdateSucces,
       error: upDateError,
       isError: isUpdateError,
-    },
+    }, */
   ] = useUpdateTodoMutation();
 
   const onRemove = async (todo) => {
@@ -32,15 +32,13 @@ function TodoElement({ todo }) {
   };
 
   const onToggle = async (todo) => {
-    console.log("todo to toggle", todo);
-    
-    await updateTodo({id:todo.id, completed: !todo.completed });
-    /*  try {
-      const res = await updateTodo(todo.id,newTodo).unwrap();
-      console.log("RES erro try", res);
-    } catch (error) {
-      console.log("ERROR", error);
-    } */
+    const newtodo = { ...todo, completed: !todo.completed };
+    try {
+      const res = await updateTodo(newtodo).unwrap();
+      console.log("res=", res);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const completed = todo.completed ? (

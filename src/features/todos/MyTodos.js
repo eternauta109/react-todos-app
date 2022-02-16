@@ -32,15 +32,14 @@ const Mytodos = () => {
 
   //prendo i todos con l'hook creato nel service  e lo carico in data
   const {
-    data = [],
+    data: { data = [] } = {},
     /* error,
     isLoading,
     isFetching,
     refetch: reloadLists, */ //metodo per rieseguire nuovamente la query come richiamare il getlist
   } = useGetTodosQuery(list_id);
 
-
-  console.log("DATA", data)
+  console.log("DATA", data);
 
   //filtro i todo per lista.. poi lo faccio nel service
   /* let todos = data.filter((e) => e.list_id === list_id); */
@@ -56,16 +55,16 @@ const Mytodos = () => {
     return !todo.completed;
   });
 
-  console.log("TODOS", todos)
+  console.log("TODOS", todos);
 
   const [
     addTodo,
-    {
+    /*  {
       isLoading: isAdding,
       isSuccess: isAddSucces,
       error: addError,
       isError: isAddError,
-    },
+    }, */
   ] = useAddTodosMutation();
 
   const manageClick = async (e) => {

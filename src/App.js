@@ -8,19 +8,23 @@ import React, { useEffect } from "react";
 import Mytodos from "./features/todos/MyTodos";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
-import { ToastContainer} from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Mylists from "./features/list/Mylist";
 import ListEdit from "./features/list/ListEdit";
 import { Header } from "./components/Header";
-
+import Login from "./features/auth/Login";
+import PrivateRoute from "./components/PrivateRoute";
+import Logout from "./features/auth/Logout";
+import Register from "./features/auth/Register";
 /* import { addTodo } from './actions/index'; */
 
 function App() {
   /* const dispatch = useDispatch(); */
-  useEffect(() => {      
+  useEffect(() => {
     //importo i todos con i thunk
-/*     dispatch(getTodos())
+    /*import Register from './features/auth/Register';
+     dispatch(getTodos())
       .unwrap()
       .then((res) => {})
       .catch((error) => {
@@ -38,8 +42,8 @@ function App() {
       /* cleanup */
     };
   }, []);
-/*   let todos = useSelector((state) => state.todos); */
-/*   console.log("useselctor state.todos", todos); */
+  /*   let todos = useSelector((state) => state.todos); */
+  /*   console.log("useselctor state.todos", todos); */
 
   return (
     <div className="App container-fluid">
@@ -47,18 +51,20 @@ function App() {
         <div className="row d-flex justify-content-center">
           <Header />
           <Switch>
-            <Route path="/todos">
+            <Route path="/login" component={Login}></Route>
+            <Route path="/register" component={Register}></Route>
+            <PrivateRoute path="/lists/:list_id/todos">
               <Mytodos />
-            </Route>
-            <Route path="/lists/:list_id/todos">
-              <Mytodos />
-            </Route>
-            <Route path="/lists/edit/:list_id">
+            </PrivateRoute>
+            <PrivateRoute path="/lists/edit/:list_id">
               <ListEdit />
-            </Route>
-            <Route exact path="(/|/lists)">
+            </PrivateRoute>
+            <PrivateRoute exact path="(/|/lists)">
               <Mylists />
-            </Route>
+            </PrivateRoute>
+            <PrivateRoute exact path="(/logout)">
+              <Logout />
+            </PrivateRoute>
           </Switch>
         </div>
       </Router>

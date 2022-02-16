@@ -5,6 +5,9 @@ import filterReducer from "../features/todos/filterSlice";
 import { listsApi } from "../service/listServiceRTK";
 import { todosApi } from "../service/todoServiceRTK";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
+import { AuthApi } from "../service/authService";
+import UserReducer, { UserSlice } from "../features/auth/userSlice";
+
 import logger from "redux-logger";
 
 //middleware con arrow function
@@ -20,6 +23,7 @@ import logger from "redux-logger";
 
 export const store = configureStore({
   reducer: {
+    [UserSlice.name]: UserReducer,
     filter: filterReducer,
     //questa era lafetta di store todos che creavo con i thunk
     /* todos: todoReducer, */
@@ -27,12 +31,14 @@ export const store = configureStore({
 
     [todosApi.reducerPath]: todosApi.reducer,
     [listsApi.reducerPath]: listsApi.reducer,
+    [AuthApi.reducerPath]: AuthApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
       logger,
       listsApi.middleware,
-      todosApi.middleware
+      todosApi.middleware,
+      AuthApi.middleware
     ),
 });
 

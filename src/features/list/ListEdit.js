@@ -20,8 +20,10 @@ function ListEdit() {
   const list_name = pars.get("list_name") ? pars.get("list_name") : "";
   console.log("list_name", list_name); */
   /* newEdit.current = "cccc"; */
-  const [updateList, { isLoading, isFetching, isSuccess, error, isError }] =
-    useUpdateListMutation();
+  const [
+    updateList,
+    { isLoading, isFetching, isSuccess, error /* , isError  */ },
+  ] = useUpdateListMutation();
 
   const handleClick = async (e) => {
     e.preventDefault();

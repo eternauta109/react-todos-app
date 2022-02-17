@@ -10,8 +10,8 @@ const Login = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [login, { error, isLoading, data }] = useLoginMutation();
-  console.log("login hooks", error, isLoading, data);
+  const [login, { error, /* isLoading, */ data }] = useLoginMutation();
+  /*  console.log("login hooks", error, isLoading, data); */
 
   const verifyLogin = (e) => {
     e.preventDefault();

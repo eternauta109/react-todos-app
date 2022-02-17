@@ -31,7 +31,7 @@ const Mylists = () => {
     // refetch: reloadLists, //metodo per rieseguire nuovamente la query come richiamare il getlist
   } = useGetListsQuery();
 
-  console.log("hook rtk query liste", lists, error, isLoading);
+  /*  console.log("hook rtk query liste", lists, error, isLoading); */
 
   const manageClick = async (e) => {
     e.preventDefault();

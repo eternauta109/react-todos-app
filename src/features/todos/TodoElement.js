@@ -34,10 +34,10 @@ function TodoElement({ todo }) {
   const onToggle = async (todo) => {
     const newtodo = { ...todo, completed: !todo.completed };
     try {
-      const res = await updateTodo(newtodo).unwrap();
-      console.log("res=", res);
+      await updateTodo(newtodo).unwrap();
+      /* console.log("res=", res); */
     } catch (e) {
-      console.log(e);
+      alert(e);
     }
   };
 

@@ -10,7 +10,7 @@ export const Lists = ({ lists }) => {
   //hook per la mutation sulle liste
   const [removeList] = useDeleteListMutation();
 
-  console.log("lisits", lists);
+  /* console.log("lisits", lists); */
   return (
     <ul className="list-group list-group-flush">
       {lists.map((list, key) => (

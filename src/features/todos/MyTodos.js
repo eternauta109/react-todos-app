@@ -22,12 +22,12 @@ const Mytodos = () => {
 
   //lavoro fatto con le route
   const { search } = useLocation();
-  console.log("params useRouteMatch", JSON.stringify(search));
+  /*  console.log("params useRouteMatch", JSON.stringify(search)); */
   let { list_id } = useParams();
   list_id = Number(list_id);
-  console.log("params useParams", list_id);
+  /*  console.log("params useParams", list_id); */
   const pars = new URLSearchParams(search);
-  console.log("params URLsearchparams", pars);
+  /*  console.log("params URLsearchparams", pars); */
   const list_name = pars.get("list_name") ? pars.get("list_name") : "";
 
   //prendo i todos con l'hook creato nel service  e lo carico in data
@@ -39,7 +39,7 @@ const Mytodos = () => {
     refetch: reloadLists, */ //metodo per rieseguire nuovamente la query come richiamare il getlist
   } = useGetTodosQuery(list_id);
 
-  console.log("DATA", data);
+  /* console.log("DATA", data); */
 
   //filtro i todo per lista.. poi lo faccio nel service
   /* let todos = data.filter((e) => e.list_id === list_id); */
@@ -55,7 +55,7 @@ const Mytodos = () => {
     return !todo.completed;
   });
 
-  console.log("TODOS", todos);
+  /* console.log("TODOS", todos); */
 
   const [
     addTodo,

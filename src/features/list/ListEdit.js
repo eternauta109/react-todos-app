@@ -10,10 +10,10 @@ function ListEdit() {
   const history = useHistory();
   const newEdit = useRef("");
   const { state } = useLocation();
-  console.log("params useRouteMatch", state.data);
+  /* console.log("params useRouteMatch", state.data); */
   let { list_id } = useParams();
   list_id = Number(list_id);
-  console.log("params useParams", list_id);
+  /*  console.log("params useParams", list_id); */
   /*
   const pars = new URLSearchParams(search);
   console.log("params URLsearchparams", pars);
